@@ -2,7 +2,7 @@
   "name": "sql-concatenation-companion",
   "displayName": "SQL Concatenation Companion",
   "description": "Finds SQL built by unparameterized string concatenation/interpolation then executed, in Java/Kotlin/Python source. No data leaves your editor.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "GapHunterLabs",
   "icon": "images/icon.png",
   "license": "Apache-2.0",
