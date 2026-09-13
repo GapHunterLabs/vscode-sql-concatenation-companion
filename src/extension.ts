@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { scan } from './scanner';
+import { recordHit } from './reviewPrompt';
 
 let diagnostics: vscode.DiagnosticCollection;
 
@@ -11,7 +12,7 @@ function isApplicable(document: vscode.TextDocument): boolean {
   return APPLICABLE_EXTENSIONS.some((ext) => document.uri.path.endsWith(ext));
 }
 
-function refresh(document: vscode.TextDocument): void {
+function refresh(context: vscode.ExtensionContext, document: vscode.TextDocument): void {
   if (!isApplicable(document)) return;
 
   const hits = scan(document.getText());
@@ -24,6 +25,7 @@ function refresh(document: vscode.TextDocument): void {
       vscode.DiagnosticSeverity.Warning,
     );
     diagnostic.source = 'SQL Concatenation Companion';
+    recordHit(context, `${document.uri.toString()}:${hit.startOffset}`);
     return diagnostic;
   });
   diagnostics.set(document.uri, result);
@@ -33,11 +35,11 @@ export function activate(context: vscode.ExtensionContext): void {
   diagnostics = vscode.languages.createDiagnosticCollection('sqlConcatenationCompanion');
   context.subscriptions.push(diagnostics);
 
-  vscode.workspace.textDocuments.forEach(refresh);
+  vscode.workspace.textDocuments.forEach((document) => refresh(context, document));
 
   context.subscriptions.push(
-    vscode.workspace.onDidOpenTextDocument(refresh),
-    vscode.workspace.onDidChangeTextDocument((event) => refresh(event.document)),
+    vscode.workspace.onDidOpenTextDocument((document) => refresh(context, document)),
+    vscode.workspace.onDidChangeTextDocument((event) => refresh(context, event.document)),
     vscode.workspace.onDidCloseTextDocument((document) => diagnostics.delete(document.uri)),
   );
 }
