@@ -1,6 +1,6 @@
 # Privacy Policy — SQL Concatenation Companion
 
-**Effective date:** 2026-09-07
+**Effective date:** 2026-10-06
 
 SQL Concatenation Companion is a Gap Hunter Labs extension for Visual Studio Code. This
 policy is short because the extension's design makes it short: there
@@ -8,9 +8,16 @@ is nothing to disclose beyond what's below.
 
 ## What this extension collects
 
-**Nothing.** SQL Concatenation Companion does not collect, store, transmit, or sell any
+**Nothing.** SQL Concatenation Companion does not collect, transmit, or sell any
 data — no source code, no file contents, no usage analytics, no
 telemetry, no crash reports, no personally identifiable information.
+
+## What it keeps on your machine
+
+To decide when to show its one-time rating prompt, the extension keeps two
+values in VS Code's storage for the extension on your computer: how many
+findings it has shown and whether you have answered the prompt. Neither is
+ever sent anywhere.
 
 ## Network access
 
