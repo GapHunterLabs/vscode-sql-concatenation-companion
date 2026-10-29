@@ -15,7 +15,7 @@ discussion, or pull request.
 
 - **Preferred:** GitHub private vulnerability reporting, the
   **Report a vulnerability** button under this repository's **Security** tab.
-- **Alternative:** email **gaphunterlabs@gmail.com** with the subject
+- **Alternative:** email **contact@gaphunterlabs.com** with the subject
   `SECURITY: SQL Concatenation Companion`.
 
 Include the extension version, the VS Code version, the operating
